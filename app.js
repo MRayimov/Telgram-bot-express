@@ -44,6 +44,9 @@ bot.command('website', ctx =>
 );
 bot.launch();
 
+app.get('/', (req, res) => {
+	res.send('salom');
+});
 export const handler = ServerlessHttp(app);
 // app.listen(3000, () => {
 // 	console.log('Listening on http://localhost:3000');
