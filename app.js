@@ -1,8 +1,12 @@
+import cors from 'cors';
 import express from 'express';
+import ServerlessHttp from 'serverless-http';
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
 const bot = new Telegraf('7207628660:AAH4JSiPsM9oJbFWEWrOFbLu9cbjRsaJH10');
 const app = express();
+
+app.use(cors());
 
 bot.start(context => context.reply('Welcome'));
 
@@ -40,6 +44,7 @@ bot.command('website', ctx =>
 );
 bot.launch();
 
-app.listen(3000, () => {
-	console.log('Listening on http://localhost:3000');
-});
+export const handler = ServerlessHttp(app);
+// app.listen(3000, () => {
+// 	console.log('Listening on http://localhost:3000');
+// });
